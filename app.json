@@ -46,6 +46,12 @@
             ]
           }
         }
+      ],
+      [
+        "./plugins/withGradleWorkerLimit",
+        {
+          "maxWorkers": 2
+        }
       ]
     ],
     "experiments": {
