@@ -144,14 +144,29 @@ npx expo start --dev-client
 | `npm test` | Jest unit tests (domain, import/export, PRs, stats) |
 | `npm run db:generate` | Generate a migration after editing `src/db/schema.ts` |
 | `npm run images:exercises` | Rebuild the bundled exercise photos from `scripts/exercise-image-map.json` |
-| `npm run build:android:apk` | EAS build: installable Android APK |
-| `npm run build:ios` | EAS build: iOS internal distribution |
+| `npm run update` | Push an over-the-air update to installed production builds |
+| `npm run release:android` | Production build, auto-submitted to Play internal testing |
+| `npm run build:android:apk` | Sideloadable Android APK (preview channel) |
 | `npm run build:dev` | EAS development build (both platforms) |
 
-### Installing on your phone
+### Installing on your phone & shipping updates
 
-- **Android:** run `npm run build:android:apk`, open the link on your phone, and install. Done.
-- **iOS:** installs that last need an Apple Developer account ($99/yr) for TestFlight or ad-hoc distribution. A free Apple ID can install from Xcode, but the app expires after 7 days.
+Baki ships to Android through the Play Console **internal testing** track (no review, updates in minutes), plus **EAS Update** for over-the-air JavaScript updates.
+
+| Change | Command | Reaches the phone |
+|---|---|---|
+| JS/TS only (screens, logic, fixes) | `npm run update` | Next app launch, no store involved |
+| Native (new native library, Expo SDK upgrade, permissions, icon) | `npm run release:android` | Cloud build → auto-submitted to internal testing → Play Store update |
+
+`runtimeVersion` uses the `fingerprint` policy, so an OTA update is only delivered to builds whose native code it is compatible with. If you run `npm run update` after a native change, the phone simply won't take it until you ship a new build.
+
+**One-time setup**
+1. Create the app in Play Console with package `com.pongpatapee.baki`.
+2. Build once: `npm run release:android` (submission fails the first time; that's expected). Download the `.aab` from the EAS build page and upload it manually to **Testing → Internal testing**. Google requires the first upload to be manual.
+3. Add yourself under internal testing **Testers**, open the opt-in link on your phone, and install from the Play Store.
+4. Put a Play service-account JSON key at `credentials/play-service-account.json` (gitignored) so later releases auto-submit.
+
+**iOS:** needs an Apple Developer account. Use `eas build -p ios` then TestFlight; `npm run update` works for iOS builds too.
 
 ### Changing the schema
 

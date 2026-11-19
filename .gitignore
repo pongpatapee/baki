@@ -42,3 +42,6 @@ yarn-error.*
 
 # build caches
 .cache/
+
+# signing / store credentials (never commit)
+credentials/

@@ -40,6 +40,23 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "owner": "pongpatapee",
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "41627c73-f61b-4943-9fc3-904feb527009"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/41627c73-f61b-4943-9fc3-904feb527009"
     }
   }
 }
