@@ -34,7 +34,8 @@
         {
           "color": "#E5484D"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
