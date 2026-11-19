@@ -161,7 +161,7 @@ Baki ships to Android through the Play Console **internal testing** track (no re
 `runtimeVersion` uses the `fingerprint` policy, so an OTA update is only delivered to builds whose native code it is compatible with. If you run `npm run update` after a native change, the phone simply won't take it until you ship a new build.
 
 **One-time setup**
-1. Create the app in Play Console with package `com.pongpatapee.baki`.
+1. Create the app in Play Console with package `com.wh1fty.baki`.
 2. Build once: `npm run release:android` (submission fails the first time; that's expected). Download the `.aab` from the EAS build page and upload it manually to **Testing → Internal testing**. Google requires the first upload to be manual.
 3. Add yourself under internal testing **Testers**, open the opt-in link on your phone, and install from the Play Store.
 4. Put a Play service-account JSON key at `credentials/play-service-account.json` (gitignored) so later releases auto-submit.

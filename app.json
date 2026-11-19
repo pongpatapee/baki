@@ -9,10 +9,10 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.pongpatapee.baki"
+      "bundleIdentifier": "com.wh1fty.baki"
     },
     "android": {
-      "package": "com.pongpatapee.baki",
+      "package": "com.wh1fty.baki",
       "adaptiveIcon": {
         "backgroundColor": "#0E0F12",
         "foregroundImage": "./assets/android-icon-foreground.png",

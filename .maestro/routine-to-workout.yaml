@@ -1,5 +1,5 @@
 # Build a routine, then start a workout from it and check the exercise was copied in.
-appId: com.pongpatapee.baki
+appId: com.wh1fty.baki
 name: Create a routine and start it
 ---
 - launchApp:

@@ -1,6 +1,6 @@
 # Start an empty workout, log a set, kill the app mid-workout, relaunch,
 # confirm the workout resumed intact, then finish it and see the summary.
-appId: com.pongpatapee.baki
+appId: com.wh1fty.baki
 name: Log, kill, resume and finish a workout
 ---
 - launchApp:
