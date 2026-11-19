@@ -3,11 +3,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { formatWorkoutDate } from '@/components/history/format';
 import { ExerciseBestRow, PrList } from '@/components/history/WorkoutSections';
-import { Button, Card, Divider, Loading, SectionHeader, Text } from '@/components/ui';
+import { Button, Card, Divider, Loading, SafeArea, SectionHeader, Text } from '@/components/ui';
 import { setsOf, useWorkoutData, useWorkoutPrs, useWorkoutTotals } from '@/components/workout/useWorkoutData';
 import { WorkoutStats } from '@/components/workout/WorkoutStats';
 import { countFinishedWorkouts } from '@/db/repositories/workouts';
@@ -43,7 +42,7 @@ export default function WorkoutSummaryScreen() {
   const { workout } = data;
 
   return (
-    <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1, backgroundColor: t.colors.background }}>
+    <SafeArea edges={['top', 'bottom']} style={{ flex: 1, backgroundColor: t.colors.background }}>
       <Stack.Screen options={{ headerShown: false, gestureEnabled: false }} />
       <ScrollView contentContainerStyle={{ padding: t.spacing(4), gap: t.spacing(3), paddingBottom: t.spacing(8) }}>
         <View style={{ alignItems: 'center', gap: t.spacing(2), paddingVertical: t.spacing(6) }}>
@@ -127,6 +126,6 @@ export default function WorkoutSummaryScreen() {
       <View style={{ paddingHorizontal: t.spacing(4), paddingBottom: t.spacing(2) }}>
         <Button title="Done" size="lg" onPress={done} />
       </View>
-    </SafeAreaView>
+    </SafeArea>
   );
 }

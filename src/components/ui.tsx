@@ -20,7 +20,7 @@ import {
   type TextStyle,
   type ViewStyle,
 } from 'react-native';
-import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
+import { useSafeAreaInsets, type Edge } from 'react-native-safe-area-context';
 
 import { useTheme } from '@/theme/AppProviders';
 
@@ -60,6 +60,38 @@ export function Text({ variant = 'body', muted, faint, color, weight, align, sty
 
 // ---------- Layout ----------
 
+/**
+ * Pads the given safe-area edges using insets from the root SafeAreaProvider.
+ * Used instead of the native SafeAreaView, which reports zero insets inside
+ * native full-screen modals (e.g. the live workout screen).
+ */
+export function SafeArea({
+  edges = ['top', 'bottom'],
+  style,
+  children,
+}: {
+  edges?: Edge[];
+  style?: StyleProp<ViewStyle>;
+  children: ReactNode;
+}) {
+  const insets = useSafeAreaInsets();
+  return (
+    <View
+      style={[
+        {
+          paddingTop: edges.includes('top') ? insets.top : 0,
+          paddingBottom: edges.includes('bottom') ? insets.bottom : 0,
+          paddingLeft: edges.includes('left') ? insets.left : 0,
+          paddingRight: edges.includes('right') ? insets.right : 0,
+        },
+        style,
+      ]}
+    >
+      {children}
+    </View>
+  );
+}
+
 export interface ScreenProps {
   children: ReactNode;
   scroll?: boolean;
@@ -83,7 +115,7 @@ export function Screen({
   const t = useTheme();
   const pad = padded ? { padding: t.spacing(4) } : null;
   return (
-    <SafeAreaView edges={edges} style={[{ flex: 1, backgroundColor: t.colors.background }, style]}>
+    <SafeArea edges={edges} style={[{ flex: 1, backgroundColor: t.colors.background }, style]}>
       {scroll ? (
         <ScrollView
           contentContainerStyle={[pad, { paddingBottom: t.spacing(12) }, contentContainerStyle]}
@@ -95,7 +127,7 @@ export function Screen({
       ) : (
         <View style={[{ flex: 1 }, pad]}>{children}</View>
       )}
-    </SafeAreaView>
+    </SafeArea>
   );
 }
 

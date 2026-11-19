@@ -6,9 +6,8 @@ import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import { router } from 'expo-router';
 import { useEffect, useRef } from 'react';
 import { Alert, Keyboard, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Button, EmptyState, IconButton, Loading, Text } from '@/components/ui';
+import { Button, EmptyState, IconButton, Loading, SafeArea, Text } from '@/components/ui';
 import { KeepAwakeWhileWorkout } from '@/components/workout/KeepAwake';
 import { REST_BAR_HEIGHT, RestTimerBar } from '@/components/workout/RestTimerBar';
 import { usePreviousSets, useWorkoutData, useWorkoutTotals } from '@/components/workout/useWorkoutData';
@@ -66,13 +65,13 @@ export default function ActiveWorkoutScreen() {
   if (active.updatedAt == null || (leaving && !workout)) return <Loading />;
   if (!workout) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: t.colors.background }}>
+      <SafeArea style={{ flex: 1, backgroundColor: t.colors.background }}>
         <EmptyState
           title="No workout in progress"
           message="Start a workout from the Workout tab."
           action={<Button title="Close" variant="secondary" onPress={close} />}
         />
-      </SafeAreaView>
+      </SafeArea>
     );
   }
   return <ActiveWorkout workout={workout} />;
@@ -160,7 +159,7 @@ function ActiveWorkout({ workout }: { workout: WorkoutRow }) {
   };
 
   return (
-    <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1, backgroundColor: t.colors.background }}>
+    <SafeArea edges={['top', 'bottom']} style={{ flex: 1, backgroundColor: t.colors.background }}>
       <KeepAwakeWhileWorkout />
       <View
         style={{
@@ -204,6 +203,6 @@ function ActiveWorkout({ workout }: { workout: WorkoutRow }) {
         footer={<Button title="Discard Workout" variant="danger" icon="trash-outline" onPress={discard} />}
       />
       <RestTimerBar />
-    </SafeAreaView>
+    </SafeArea>
   );
 }
