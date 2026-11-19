@@ -68,7 +68,8 @@
     "release:android": "eas build --platform android --profile production --auto-submit",
     "update": "eas update --channel production --environment production --auto",
     "build:android:apk": "eas build --platform android --profile preview",
-    "build:dev": "eas build --profile development"
+    "build:dev": "eas build --profile development",
+    "build:android:local": "JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home ANDROID_HOME=$HOME/Library/Android/sdk eas build --platform android --profile production --local --output ./build/baki.aab"
   },
   "private": true
 }

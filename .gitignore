@@ -45,3 +45,4 @@ yarn-error.*
 
 # signing / store credentials (never commit)
 credentials/
+/build/
