@@ -1,0 +1,37 @@
+# Start an empty workout, log a set, kill the app mid-workout, relaunch,
+# confirm the workout resumed intact, then finish it and see the summary.
+appId: com.pongpatapee.baki
+name: Log, kill, resume and finish a workout
+---
+- launchApp:
+    clearState: true
+- tapOn: "Start Empty Workout"
+- tapOn: "Add Exercises"
+- tapOn: "Search exercises"
+- inputText: "bench press barbell"
+- tapOn: "Bench Press (Barbell)"
+- tapOn: "Add 1 exercise"
+- tapOn:
+    id: "set-input-weight"
+- inputText: "100"
+- tapOn:
+    id: "set-input-reps"
+- inputText: "5"
+- hideKeyboard
+- tapOn:
+    id: "set-complete"
+# Rest-timer notification permission prompt (first run only)
+- runFlow:
+    when:
+      visible: "Allow"
+    commands:
+      - tapOn: "Allow"
+# Kill the app mid-workout and relaunch
+- stopApp
+- launchApp
+- assertVisible: "Workout in progress.*"
+- tapOn: "Workout in progress.*"
+- assertVisible: "Bench Press (Barbell)"
+- assertVisible: "100"
+- tapOn: "Finish"
+- assertVisible: "Workout complete"

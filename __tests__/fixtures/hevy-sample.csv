@@ -1,0 +1,20 @@
+"title","start_time","end_time","description","exercise_title","superset_id","exercise_notes","set_index","set_type","weight_kg","reps","distance_km","duration_seconds","rpe"
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Bench Press (Barbell)","","Pause reps",0,"warmup",40,10,,,
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Bench Press (Barbell)","","Pause reps",1,"normal",80,8,,,8
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Bench Press (Barbell)","","Pause reps",2,"normal",82.5,6,,,8.5
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Bench Press (Barbell)","","Pause reps",3,"failure",82.5,5,,,10
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Lateral Raise (Dumbbell)","0","",0,"normal",10,15,,,
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Triceps Pushdown","0","",0,"normal",30,12,,,
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Lateral Raise (Dumbbell)","0","",1,"dropset",8,12,,,
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Triceps Pushdown","0","",1,"normal",30,10,,,
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Push Up","","",0,"normal",,25,,,
+"Push Day","5 Jan 2025, 18:30","5 Jan 2025, 19:42","Felt strong","Plank","","",0,"normal",,,,90,
+"Morning Run","7 Jan 2025, 07:05","7 Jan 2025, 07:40","","Running","","Easy pace",0,"normal",,,5.2,1980,
+"Pull Day, Heavy","8 Jan 2025, 18:00","8 Jan 2025, 19:10","Back ""hurt"" a bit, kept it light","Deadlift (Barbell)","","",0,"warmup",60,5,,,
+"Pull Day, Heavy","8 Jan 2025, 18:00","8 Jan 2025, 19:10","Back ""hurt"" a bit, kept it light","Deadlift (Barbell)","","",1,"normal",140,5,,,
+"Pull Day, Heavy","8 Jan 2025, 18:00","8 Jan 2025, 19:10","Back ""hurt"" a bit, kept it light","My Weird Custom Row","","multi
+line note",0,"normal",50,10,,,
+"Broken","not a date","","","Bench Press (Barbell)","","",0,"normal",100,5,,,
+"Pull Day, Heavy","8 Jan 2025, 18:00","8 Jan 2025, 19:10","Back ""hurt"" a bit, kept it light","","","",1,"normal",50,10,,,
+"Pull Day, Heavy","8 Jan 2025, 18:00","8 Jan 2025, 19:10","Back ""hurt"" a bit, kept it light","Farmers Walk","","",0,"normal",32,abc,0.04,,
+"Push Day","12 Jan 2025, 18:15","12 Jan 2025, 19:20","","Bench Press (Barbell)","","",0,"normal",85,5,,,

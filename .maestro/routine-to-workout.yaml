@@ -1,0 +1,20 @@
+# Build a routine, then start a workout from it and check the exercise was copied in.
+appId: com.pongpatapee.baki
+name: Create a routine and start it
+---
+- launchApp:
+    clearState: true
+- tapOn: "New Routine"
+- tapOn: "Routine title"
+- inputText: "Push Day"
+- tapOn: "Add Exercises"
+- tapOn: "Search exercises"
+- inputText: "overhead press barbell"
+- tapOn: "Overhead Press (Barbell)"
+- tapOn: "Add 1 exercise"
+- tapOn: "Save"
+- assertVisible: "Push Day"
+- tapOn: "Start Routine"
+- assertVisible: "Overhead Press (Barbell)"
+- tapOn:
+    id: "set-complete"

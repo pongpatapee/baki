@@ -2,8 +2,8 @@ import { sql } from 'drizzle-orm';
 
 import { db } from '../client';
 import { now } from '../ids';
-import { getSetting, setSetting } from '../repositories/settings';
-import { exercises } from '../schema';
+import { getSetting } from '../repositories/settings';
+import { exercises, settings } from '../schema';
 import { EXERCISE_SEED_VERSION, SEED_EXERCISES } from './exercises';
 
 /**
@@ -15,9 +15,10 @@ export async function seedIfNeeded(): Promise<void> {
   const applied = await getSetting('exerciseSeedVersion');
   if (applied >= EXERCISE_SEED_VERSION) return;
   const at = now();
-  await db.transaction(async (tx) => {
+  // drizzle's expo-sqlite transactions are synchronous: every statement inside must be sync (.run()).
+  db.transaction((tx) => {
     for (const e of SEED_EXERCISES) {
-      await tx
+      tx
         .insert(exercises)
         .values({ ...e, isCustom: false, notes: null, mergedIntoId: null, createdAt: at, updatedAt: at, deletedAt: null })
         .onConflictDoUpdate({
@@ -30,8 +31,12 @@ export async function seedIfNeeded(): Promise<void> {
             secondaryMuscles: sql`excluded.secondary_muscles`,
             updatedAt: at,
           },
-        });
+        })
+        .run();
     }
-    await setSetting('exerciseSeedVersion', EXERCISE_SEED_VERSION, tx);
+    tx.insert(settings)
+      .values({ key: 'exerciseSeedVersion', value: JSON.stringify(EXERCISE_SEED_VERSION), updatedAt: at })
+      .onConflictDoUpdate({ target: settings.key, set: { value: JSON.stringify(EXERCISE_SEED_VERSION), updatedAt: at } })
+      .run();
   });
 }

@@ -1,0 +1,5 @@
+title,start_time,end_time,description,exercise_title,superset_id,exercise_notes,set_index,set_type,weight_lbs,reps,distance_miles,duration_seconds,rpe
+Legs,"14 Feb 2025, 09:00","14 Feb 2025, 10:05",,Squat (Barbell),,,0,warmup,135,5,,,
+Legs,"14 Feb 2025, 09:00","14 Feb 2025, 10:05",,Squat (Barbell),,,1,normal,225,5,,,
+Legs,"14 Feb 2025, 09:00","14 Feb 2025, 10:05",,Squat (Barbell),,,2,normal,225,5,,,
+Legs,"14 Feb 2025, 09:00","14 Feb 2025, 10:05",,Cycling,,,0,normal,,,3.1,900,
