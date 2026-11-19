@@ -103,7 +103,7 @@ export function ExerciseSetList({
     >
       <Pressable onPress={() => router.push(`/exercise/${exercise.exerciseId}`)} accessibilityRole="link">
         <Row gap={3}>
-          <ExerciseAvatar name={exercise.exerciseName} size={36} />
+          <ExerciseAvatar name={exercise.exerciseName} exerciseId={exercise.exerciseId} size={36} />
           <View style={{ flex: 1 }}>
             <Text weight="700" color={t.colors.primary} numberOfLines={2}>
               {exercise.exerciseName}
@@ -176,7 +176,7 @@ export function ExerciseBestRow({
   const best = bestSet(exercise.exerciseType, sets);
   return (
     <Row gap={3} style={{ paddingVertical: t.spacing(2) }}>
-      <ExerciseAvatar name={exercise.exerciseName} size={36} />
+      <ExerciseAvatar name={exercise.exerciseName} exerciseId={exercise.exerciseId} size={36} />
       <View style={{ flex: 1, gap: 2 }}>
         <Text weight="600" numberOfLines={1}>
           {exercise.exerciseName}

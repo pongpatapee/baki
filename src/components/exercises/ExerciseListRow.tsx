@@ -41,7 +41,7 @@ export const ExerciseListRow = memo(function ExerciseListRow({
       })}
     >
       {selected ? <View style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, backgroundColor: t.colors.primary }} /> : null}
-      <ExerciseAvatar name={exercise.name} />
+      <ExerciseAvatar name={exercise.name} exerciseId={exercise.id} />
       <View style={{ flex: 1, gap: 2 }}>
         <Text weight="600" numberOfLines={1}>
           {exercise.name}

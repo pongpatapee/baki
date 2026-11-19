@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { View } from 'react-native';
 
 import { ExerciseHistory } from '@/components/stats/ExerciseHistory';
+import { ExerciseDemo, hasExerciseDemo } from '@/components/exercises/ExerciseDemo';
 import { ExerciseInfo } from '@/components/stats/ExerciseInfo';
 import { ExerciseRecords } from '@/components/stats/ExerciseRecords';
 import { ExerciseSummary } from '@/components/stats/ExerciseSummary';
@@ -66,6 +67,11 @@ export default function ExerciseDetailScreen() {
             : undefined,
         }}
       />
+      {hasExerciseDemo(ex.id) ? (
+        <View style={{ marginBottom: t.spacing(4) }}>
+          <ExerciseDemo exerciseId={ex.id} />
+        </View>
+      ) : null}
       <View style={{ marginBottom: t.spacing(4) }}>
         <Row gap={2} wrap>
           <Text muted>

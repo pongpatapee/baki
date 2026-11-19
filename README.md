@@ -34,7 +34,8 @@ I liked Hevy's logging flow but never used the social side, and the features I a
 - **Unlimited routines and folders.** Duplicate, reorder, set per-set targets, rest times, and supersets.
 
 ### 📚 Exercises
-- A curated library of ~200 exercises using Hevy-style names (`Bench Press (Barbell)`), searchable and filterable by muscle and equipment.
+- A curated library of 277 exercises using Hevy-style names (`Bench Press (Barbell)`), searchable and filterable by muscle and equipment.
+- **Demonstration photos** for 226 of them (start/end position, crossfading like a short clip), bundled in the app so they work offline.
 - **Custom exercises** with 7 tracking types: weight & reps, bodyweight, weighted bodyweight, assisted, duration, distance & duration, weight & distance.
 - **Merge** duplicate exercises, and their history follows.
 
@@ -142,6 +143,7 @@ npx expo start --dev-client
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm test` | Jest unit tests (domain, import/export, PRs, stats) |
 | `npm run db:generate` | Generate a migration after editing `src/db/schema.ts` |
+| `npm run images:exercises` | Rebuild the bundled exercise photos from `scripts/exercise-image-map.json` |
 | `npm run build:android:apk` | EAS build: installable Android APK |
 | `npm run build:ios` | EAS build: iOS internal distribution |
 | `npm run build:dev` | EAS development build (both platforms) |
@@ -179,6 +181,10 @@ maestro test .maestro/   # end-to-end flows (requires a running dev build + Maes
 - [ ] Apple Health / Health Connect
 - [ ] Lock screen Live Activity for the rest timer
 - [ ] Apple Watch / Wear OS companion
+
+## Credits
+
+Exercise photos come from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain, Unlicense), pinned to a specific commit. To add or change a photo, edit `scripts/exercise-image-map.json` (Baki exercise id → free-exercise-db id, or `null` when no faithful photo exists) and run `npm run images:exercises`.
 
 ## License
 

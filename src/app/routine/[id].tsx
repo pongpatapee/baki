@@ -162,7 +162,7 @@ export default function RoutineDetailScreen() {
                 ) : null}
                 <Pressable onPress={() => router.push(`/exercise/${e.exerciseId}`)}>
                   <Row gap={3}>
-                    <ExerciseAvatar name={e.exercise.name} size={36} />
+                    <ExerciseAvatar name={e.exercise.name} exerciseId={e.exerciseId} size={36} />
                     <View style={{ flex: 1 }}>
                       <Text weight="600" color={t.colors.primary}>
                         {e.exercise.name}

@@ -57,7 +57,7 @@ function ExerciseCardImpl(p: ExerciseCardProps) {
     >
       <View style={{ padding: t.spacing(3), paddingBottom: t.spacing(2), gap: t.spacing(2) }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: t.spacing(3) }}>
-          <ExerciseAvatar name={ex.exerciseName} size={36} />
+          <ExerciseAvatar name={ex.exerciseName} exerciseId={ex.exerciseId} size={36} />
           <Pressable
             style={{ flex: 1 }}
             onPress={() => router.push(`/exercise/${ex.exerciseId}`)}

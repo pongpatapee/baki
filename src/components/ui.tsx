@@ -3,6 +3,7 @@
  * Prefer these over raw RN components so the app looks consistent in light and dark.
  */
 import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
 import type { ComponentProps, ReactNode } from 'react';
 import {
   ActivityIndicator,
@@ -22,6 +23,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets, type Edge } from 'react-native-safe-area-context';
 
+import { EXERCISE_IMAGES } from '@/db/seed/exerciseImages';
 import { useTheme } from '@/theme/AppProviders';
 
 export type IconName = ComponentProps<typeof Ionicons>['name'];
@@ -531,21 +533,32 @@ export function ListItem({
   );
 }
 
-/** Round letter avatar for an exercise (no images are bundled). */
-export function ExerciseAvatar({ name, size = 40 }: { name: string; size?: number }) {
+/**
+ * Round avatar for an exercise: its bundled photo when one exists (pass `exerciseId`),
+ * otherwise the first letter of its name.
+ */
+export function ExerciseAvatar({ name, exerciseId, size = 40 }: { name: string; exerciseId?: string; size?: number }) {
   const t = useTheme();
+  const photo = exerciseId ? EXERCISE_IMAGES[exerciseId]?.[0] : undefined;
+  const frame: ViewStyle = {
+    width: size,
+    height: size,
+    borderRadius: size / 2,
+    backgroundColor: photo ? '#FFFFFF' : t.colors.surfaceAlt,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  };
+  if (photo) {
+    return (
+      <View style={frame}>
+        <Image source={photo} style={{ width: size, height: size }} contentFit="cover" transition={0} />
+      </View>
+    );
+  }
   const letter = name.trim().charAt(0).toUpperCase() || '?';
   return (
-    <View
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size / 2,
-        backgroundColor: t.colors.surfaceAlt,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <View style={frame}>
       <Text weight="700" muted style={{ fontSize: size * 0.42 }}>
         {letter}
       </Text>

@@ -184,7 +184,7 @@ export default function StatsTab() {
                 <ListItem
                   title={name}
                   subtitle={`${u.workouts} workout${u.workouts === 1 ? '' : 's'}${u.volumeKg > 0 ? ` · ${formatVolume(u.volumeKg, units.weightUnit)}` : ''}`}
-                  left={<ExerciseAvatar name={name} size={36} />}
+                  left={<ExerciseAvatar name={name} exerciseId={u.exerciseId} size={36} />}
                   right={
                     <Text weight="700">
                       {u.sets} <Text variant="caption" muted>sets</Text>

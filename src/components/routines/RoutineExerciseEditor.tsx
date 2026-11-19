@@ -106,7 +106,7 @@ export const RoutineExerciseEditor = memo(function RoutineExerciseEditor(p: Rout
       ) : null}
       <View style={{ padding: t.spacing(3), paddingLeft: t.spacing(4), gap: t.spacing(2.5) }}>
         <Row gap={3}>
-          <ExerciseAvatar name={exercise?.name ?? '?'} size={36} />
+          <ExerciseAvatar name={exercise?.name ?? '?'} exerciseId={exercise?.id} size={36} />
           <View style={{ flex: 1 }}>
             <Text weight="600" color={t.colors.primary} numberOfLines={2}>
               {exercise?.name ?? 'Unknown exercise'}
