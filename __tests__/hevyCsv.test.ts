@@ -164,3 +164,41 @@ describe('exercise matching', () => {
     expect(nameSimilarity('Lateral Raise', 'Lateral Raise (Dumbbell)')).toBeGreaterThan(0.5);
   });
 });
+
+describe('parseHevyCsv line endings', () => {
+  const header =
+    '"title","start_time","end_time","description","exercise_title","superset_id","exercise_notes","set_index","set_type","weight_lbs","reps","distance_km","duration_seconds","rpe"';
+  const row = (title: string, start: string, ex: string) =>
+    `"${title}","${start}","${start}","","${ex}",,"",0,"normal",100,5,,,`;
+
+  it('handles files that mix CRLF and LF line endings (real Hevy exports do)', () => {
+    const text =
+      header + '\r\n' +
+      row('A', '9 Nov 2026, 17:28', 'Bench Press (Barbell)') + '\r\n' +
+      row('B', '8 Nov 2026, 11:00', 'Squat (Barbell)') + '\n' + // bare LF
+      row('C', '7 Nov 2026, 10:30', 'Deadlift (Barbell)') + '\r\n';
+    const result = parseHevyCsv(text);
+    expect(result.warnings).toEqual([]);
+    expect(result.workouts.map((w) => w.title).sort()).toEqual(['A', 'B', 'C']);
+  });
+
+  it('keeps multi-line quoted notes intact', () => {
+    const text =
+      header + '\r\n' +
+      `"A","9 Nov 2026, 17:28","9 Nov 2026, 17:28","line one\r\nline two","Bench Press (Barbell)",,"",0,"normal",100,5,,,\r\n`;
+    const result = parseHevyCsv(text);
+    expect(result.warnings).toEqual([]);
+    expect(result.workouts[0]?.description).toBe('line one\nline two');
+  });
+});
+
+describe('exercise name spelling normalization', () => {
+  it('treats Hevy spellings and joined words as the same exercise', () => {
+    const m = new ExerciseMatcher([
+      { id: 'kelso', name: 'Kelso Shrug (Dumbbell)' },
+      { id: 'pu', name: 'Push Up' },
+    ]);
+    expect(m.exact('Kelso Shrug (Dumbell)')?.id).toBe('kelso');
+    expect(m.exact('Pushups')?.id).toBe('pu');
+  });
+});

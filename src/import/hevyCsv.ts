@@ -169,7 +169,9 @@ const nonEmpty = (s: string | undefined): string | null => {
 
 /** Parses the whole CSV text. Throws HevyFormatError only when the file isn't a Hevy export at all. */
 export function parseHevyCsv(text: string): HevyParseResult {
-  const clean = text.replace(/^﻿/, '');
+  // Real Hevy exports mix CRLF and bare LF line endings; papaparse detects the newline style from the
+  // first line only, so normalize first or rows ending in a bare LF get merged with the next row.
+  const clean = text.replace(/^﻿/, '').replace(/\r\n?/g, '\n');
   const parsed = Papa.parse<Record<string, string>>(clean, {
     header: true,
     skipEmptyLines: 'greedy',

@@ -24,8 +24,24 @@ export function normalizeExerciseName(s: string): string {
     .replace(/&/g, ' and ')
     .replace(/[^a-z0-9]+/g, ' ')
     .trim()
-    .replace(/\s+/g, ' ');
+    .split(/\s+/)
+    .map((w) => SPELLING[w] ?? w)
+    .join(' ');
 }
+
+/** Common misspellings and joined forms in exercise names (Hevy itself exports "Dumbell"). */
+const SPELLING: Record<string, string> = {
+  dumbell: 'dumbbell',
+  dumbells: 'dumbbells',
+  pushup: 'push up',
+  pushups: 'push ups',
+  pullup: 'pull up',
+  pullups: 'pull ups',
+  chinup: 'chin up',
+  chinups: 'chin ups',
+  situp: 'sit up',
+  situps: 'sit ups',
+};
 
 const STOP = new Set(['the', 'a', 'an', 'and', 'with', 'on', 'of']);
 
@@ -34,6 +50,7 @@ function tokens(norm: string): string[] {
 }
 
 function singular(t: string): string {
+  if (t === 'ups') return 'up'; // "Push Ups", "Pull Ups", "Sit Ups"
   if (t.length > 3 && t.endsWith('es') && /(ss|x|ch|sh)es$/.test(t)) return t.slice(0, -2);
   if (t.length > 3 && t.endsWith('s') && !t.endsWith('ss')) return t.slice(0, -1);
   return t;

@@ -11,7 +11,7 @@ export interface SeedExercise {
 }
 
 /** Bump whenever SEED_EXERCISES changes so existing installs pick up new/updated entries. */
-export const EXERCISE_SEED_VERSION = 1;
+export const EXERCISE_SEED_VERSION = 2;
 
 /**
  * Curated built-in exercise library.
@@ -50,7 +50,7 @@ export const SEED_EXERCISES: SeedExercise[] = [
   { id: 'ex_diamond_push_up', name: 'Diamond Push Up', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'triceps', secondaryMuscles: ['chest', 'shoulders'] },
   { id: 'ex_weighted_push_up', name: 'Weighted Push Up', exerciseType: 'weighted_bodyweight', equipment: 'plate', primaryMuscle: 'chest', secondaryMuscles: ['triceps', 'shoulders'] },
   { id: 'ex_chest_dip', name: 'Chest Dip', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'chest', secondaryMuscles: ['triceps', 'shoulders'] },
-  { id: 'ex_weighted_dip', name: 'Weighted Dip', exerciseType: 'weighted_bodyweight', equipment: 'other', primaryMuscle: 'chest', secondaryMuscles: ['triceps', 'shoulders'] },
+  { id: 'ex_weighted_dip', name: 'Chest Dip (Weighted)', exerciseType: 'weighted_bodyweight', equipment: 'other', primaryMuscle: 'chest', secondaryMuscles: ['triceps', 'shoulders'] },
   { id: 'ex_assisted_dip', name: 'Assisted Dip', exerciseType: 'assisted_bodyweight', equipment: 'machine', primaryMuscle: 'chest', secondaryMuscles: ['triceps', 'shoulders'] },
   { id: 'ex_ring_dips', name: 'Ring Dips', exerciseType: 'bodyweight_reps', equipment: 'suspension', primaryMuscle: 'chest', secondaryMuscles: ['triceps', 'shoulders'] },
   // Shoulders
@@ -312,4 +312,22 @@ export const SEED_EXERCISES: SeedExercise[] = [
   { id: 'ex_battle_ropes', name: 'Battle Ropes', exerciseType: 'duration', equipment: 'other', primaryMuscle: 'cardio', secondaryMuscles: ['shoulders', 'forearms'] },
   { id: 'ex_stretching', name: 'Stretching', exerciseType: 'duration', equipment: 'none', primaryMuscle: 'other', secondaryMuscles: [] },
   { id: 'ex_yoga', name: 'Yoga', exerciseType: 'duration', equipment: 'none', primaryMuscle: 'other', secondaryMuscles: ['full_body'] },
+  // Added for Hevy import coverage (seed v2)
+  { id: 'ex_single_arm_lateral_raise_cable', name: 'Single Arm Lateral Raise (Cable)', exerciseType: 'weight_reps', equipment: 'cable', primaryMuscle: 'shoulders', secondaryMuscles: [] },
+  { id: 'ex_reverse_fly_single_arm_cable', name: 'Reverse Fly Single Arm (Cable)', exerciseType: 'weight_reps', equipment: 'cable', primaryMuscle: 'shoulders', secondaryMuscles: ['upper_back'] },
+  { id: 'ex_chest_fly_machine', name: 'Chest Fly (Machine)', exerciseType: 'weight_reps', equipment: 'machine', primaryMuscle: 'chest', secondaryMuscles: ['shoulders'] },
+  { id: 'ex_kelso_shrug_dumbbell', name: 'Kelso Shrug (Dumbbell)', exerciseType: 'weight_reps', equipment: 'dumbbell', primaryMuscle: 'upper_back', secondaryMuscles: ['traps'] },
+  { id: 'ex_calf_extension_machine', name: 'Calf Extension (Machine)', exerciseType: 'weight_reps', equipment: 'machine', primaryMuscle: 'calves', secondaryMuscles: [] },
+  { id: 'ex_crunch_weighted', name: 'Crunch (Weighted)', exerciseType: 'weighted_bodyweight', equipment: 'plate', primaryMuscle: 'abdominals', secondaryMuscles: [] },
+  { id: 'ex_archer_push_ups', name: 'Archer Push Ups', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'chest', secondaryMuscles: ['triceps', 'shoulders'] },
+  { id: 'ex_pseudo_planche_push_ups', name: 'Pseudo Planche Push Ups', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'chest', secondaryMuscles: ['shoulders', 'triceps', 'abdominals'] },
+  { id: 'ex_wall_assisted_handstand_push_ups', name: 'Wall Assisted Handstand Push Ups', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'shoulders', secondaryMuscles: ['triceps', 'traps'] },
+  { id: 'ex_handstand_hold', name: 'Handstand Hold', exerciseType: 'duration', equipment: 'none', primaryMuscle: 'shoulders', secondaryMuscles: ['triceps', 'abdominals'] },
+  { id: 'ex_explosive_pull_ups', name: 'Explosive Pull Ups', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'lats', secondaryMuscles: ['biceps', 'upper_back'] },
+  { id: 'ex_assisted_muscle_ups', name: 'Assisted Muscle Ups', exerciseType: 'assisted_bodyweight', equipment: 'resistance_band', primaryMuscle: 'lats', secondaryMuscles: ['chest', 'triceps', 'biceps'] },
+  { id: 'ex_front_lever_raise', name: 'Front Lever Raise', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'lats', secondaryMuscles: ['abdominals', 'upper_back'] },
+  { id: 'ex_negative_dragon_flags', name: 'Negative Dragon Flags', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'abdominals', secondaryMuscles: ['lower_back'] },
+  { id: 'ex_leg_raise_parallel_bars', name: 'Leg Raise Parallel Bars', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'abdominals', secondaryMuscles: [] },
+  { id: 'ex_l_sit_leg_lifts', name: 'L Sit Leg Lifts', exerciseType: 'bodyweight_reps', equipment: 'none', primaryMuscle: 'abdominals', secondaryMuscles: ['triceps'] },
+  { id: 'ex_muay_thai_boxing', name: 'Muay Thai/Boxing', exerciseType: 'duration', equipment: 'none', primaryMuscle: 'cardio', secondaryMuscles: ['full_body'] },
 ];

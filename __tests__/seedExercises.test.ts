@@ -15,10 +15,19 @@ describe('seed exercise library', () => {
     expect(new Set(names).size).toBe(names.length);
   });
 
-  it('uses well-formed ids derived from the name', () => {
+  /**
+   * Ids are permanent (workout history points at them), so a renamed exercise keeps its original id.
+   * Record each rename here: id -> current name.
+   */
+  const RENAMED: Record<string, string> = {
+    ex_weighted_dip: 'Chest Dip (Weighted)', // seed v2: matched to Hevy's name
+  };
+
+  it('uses well-formed ids derived from the name (except recorded renames)', () => {
     for (const e of SEED_EXERCISES) {
       expect(e.id).toMatch(/^ex_[a-z0-9]+(_[a-z0-9]+)*$/);
-      expect(e.id).toBe(slug(e.name));
+      if (e.id in RENAMED) expect(e.name).toBe(RENAMED[e.id]);
+      else expect(e.id).toBe(slug(e.name));
     }
   });
 
