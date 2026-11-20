@@ -66,7 +66,7 @@
     "db:generate": "drizzle-kit generate",
     "images:exercises": "node scripts/build-exercise-images.mjs",
     "release:android": "npm run build:android:local && npm run submit:android",
-    "update": "eas update --channel production --environment production --auto",
+    "update": "eas update --channel production --environment production --platform android --auto",
     "build:android:apk": "eas build --platform android --profile preview",
     "build:dev": "eas build --profile development",
     "build:android:local": "JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home ANDROID_HOME=$HOME/Library/Android/sdk eas build --platform android --profile production --local --output ./build/baki.aab",

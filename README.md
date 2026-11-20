@@ -144,7 +144,7 @@ npx expo start --dev-client
 | `npm test` | Jest unit tests (domain, import/export, PRs, stats) |
 | `npm run db:generate` | Generate a migration after editing `src/db/schema.ts` |
 | `npm run images:exercises` | Rebuild the bundled exercise photos from `scripts/exercise-image-map.json` |
-| `npm run update` | Push an over-the-air update to installed production builds |
+| `npm run update` | Push an over-the-air update to installed production Android builds (add `--platform ios` runs once there is an iOS build) |
 | `npm run release:android` | Build the signed `.aab` locally, then upload it to Play internal testing |
 | `npm run build:android:local` | Only build `build/baki.aab` locally (needs JDK 17 + Android SDK/NDK) |
 | `npm run submit:android` | Only upload `build/baki.aab` to Play internal testing |
