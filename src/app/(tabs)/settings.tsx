@@ -4,6 +4,7 @@ import { openURL } from 'expo-linking';
 import type { ReactNode } from 'react';
 import { ScrollView, Switch, View } from 'react-native';
 
+import { AppUpdateSection } from '@/components/settings/AppUpdateSection';
 import { DataSection } from '@/components/settings/DataSection';
 import { PlateSettings } from '@/components/settings/PlateSettings';
 import { Card, Chip, Divider, ListItem, Row, Screen, SectionHeader, Segmented, Text } from '@/components/ui';
@@ -95,6 +96,9 @@ export default function SettingsTab() {
 
       <SectionHeader title="Data" />
       <DataSection />
+
+      <SectionHeader title="App updates" />
+      <AppUpdateSection />
 
       <SectionHeader title="About" />
       <Card style={{ paddingVertical: t.spacing(1) }}>
