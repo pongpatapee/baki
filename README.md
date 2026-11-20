@@ -145,7 +145,10 @@ npx expo start --dev-client
 | `npm run db:generate` | Generate a migration after editing `src/db/schema.ts` |
 | `npm run images:exercises` | Rebuild the bundled exercise photos from `scripts/exercise-image-map.json` |
 | `npm run update` | Push an over-the-air update to installed production builds |
-| `npm run release:android` | Production build, auto-submitted to Play internal testing |
+| `npm run release:android` | Build the signed `.aab` locally, then upload it to Play internal testing |
+| `npm run build:android:local` | Only build `build/baki.aab` locally (needs JDK 17 + Android SDK/NDK) |
+| `npm run submit:android` | Only upload `build/baki.aab` to Play internal testing |
+| `npm run release:android:cloud` | Same as `release:android` but built on EAS (crashes on the free-tier worker; needs the `large` resource class) |
 | `npm run build:android:apk` | Sideloadable Android APK (preview channel) |
 | `npm run build:dev` | EAS development build (both platforms) |
 
@@ -155,16 +158,19 @@ Baki ships to Android through the Play Console **internal testing** track (no re
 
 | Change | Command | Reaches the phone |
 |---|---|---|
-| JS/TS only (screens, logic, fixes) | `npm run update` | Next app launch, no store involved |
-| Native (new native library, Expo SDK upgrade, permissions, icon) | `npm run release:android` | Cloud build → auto-submitted to internal testing → Play Store update |
+| JS/TS only (screens, logic, fixes) | `npm run update` | Next app launch (downloads on one launch, applies on the next), no store involved |
+| Native (new native library, Expo SDK upgrade, permissions, icon, `app.json` plugins) | `npm run release:android` | Local build → uploaded to internal testing → Play Store update |
 
-`runtimeVersion` uses the `fingerprint` policy, so an OTA update is only delivered to builds whose native code it is compatible with. If you run `npm run update` after a native change, the phone simply won't take it until you ship a new build.
+`runtimeVersion` uses the `fingerprint` policy, so an OTA update is only delivered to builds whose native code it is compatible with. If you run `npm run update` after a native change, the phone simply won't take it until you ship a new build. `fingerprint.config.js` excludes npm scripts and `.gitignore`, which don't affect native code.
+
+**Why local builds:** the EAS free-tier Android worker (4 vCPU / 16 GB) kills the Gradle daemon while compiling Skia, Reanimated and Worklets. `eas build --local` uses the same EAS-managed signing key, so local and cloud builds are interchangeable.
 
 **One-time setup**
-1. Create the app in Play Console with package `com.wh1fty.baki`.
-2. Build once: `npm run release:android` (submission fails the first time; that's expected). Download the `.aab` from the EAS build page and upload it manually to **Testing → Internal testing**. Google requires the first upload to be manual.
-3. Add yourself under internal testing **Testers**, open the opt-in link on your phone, and install from the Play Store.
-4. Put a Play service-account JSON key at `credentials/play-service-account.json` (gitignored) so later releases auto-submit.
+1. Install the toolchain: `brew install openjdk@17 android-commandlinetools`, then with `sdkmanager` install `platform-tools`, `platforms;android-37.0`, `build-tools;37.0.0`, `ndk;27.1.12297006` and `cmake;3.22.1` into `~/Library/Android/sdk`.
+2. Create the app in Play Console with package `com.wh1fty.baki`.
+3. `npm run build:android:local`, then upload `build/baki.aab` manually to **Testing → Internal testing** (Google requires the first upload to be manual).
+4. Add yourself under internal testing **Testers**, open the opt-in link on your phone, and install from the Play Store.
+5. Create a Google Cloud service account with the Google Play Android Developer API enabled, invite its email in Play Console (**Users and permissions**, Baki, *Release apps to testing tracks*), and save its JSON key as `credentials/play-service-account.json` (gitignored). After that, `npm run release:android` uploads automatically.
 
 **iOS:** needs an Apple Developer account. Use `eas build -p ios` then TestFlight; `npm run update` works for iOS builds too.
 

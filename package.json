@@ -65,11 +65,13 @@
     "lint": "expo lint",
     "db:generate": "drizzle-kit generate",
     "images:exercises": "node scripts/build-exercise-images.mjs",
-    "release:android": "eas build --platform android --profile production --auto-submit",
+    "release:android": "npm run build:android:local && npm run submit:android",
     "update": "eas update --channel production --environment production --auto",
     "build:android:apk": "eas build --platform android --profile preview",
     "build:dev": "eas build --profile development",
-    "build:android:local": "JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home ANDROID_HOME=$HOME/Library/Android/sdk eas build --platform android --profile production --local --output ./build/baki.aab"
+    "build:android:local": "JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home ANDROID_HOME=$HOME/Library/Android/sdk eas build --platform android --profile production --local --output ./build/baki.aab",
+    "submit:android": "eas submit --platform android --profile production --path ./build/baki.aab --non-interactive",
+    "release:android:cloud": "eas build --platform android --profile production --auto-submit"
   },
   "private": true
 }
